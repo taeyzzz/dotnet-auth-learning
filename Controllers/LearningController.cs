@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,7 @@ public class LearningController : Controller
 
     [HttpPost]
     [Route("update")]
-    [Authorize(Roles = "Taey")]
+    [ClaimRequirement(ClaimTypes.Role, "Taey")]
     public string UpdateStatus(UpdateStatusRequest newStatus){
         _learningService.UpdateStatus(newStatus.Status);
         return "DONE";
